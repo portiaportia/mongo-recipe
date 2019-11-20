@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <h1>Recipes</h1>
+
+        <div id="add-recipe-form" class="recipe-form">
+            <p>
+                <label for="txt-add-recipe-title">Title:</label>
+                <input type="text" id="txt-add-recipe-title">
+            </p>
+            <p>
+                <label for="txt-add-recipe-author">Author:</label>
+                <input type="text" id="txt-add-recipe-author">
+            </p>
+            <p>
+                <label for="txt-add-recipe-rating">Rating:</label>
+                <input type="text" id="txt-add-recipe-rating">
+            </p>
+            <p>
+                <label for="txt-add-recipe-ingredients">Ingredients:</label>
+                <textarea rows="5" id="txt-add-recipe-ingredients"></textarea>
+            </p>
+            <p>
+                <label for="txt-add-recipe-directions">Directions:</label>
+                <textarea rows="5" id="txt-add-recipe-directions"></textarea>
+            </p>
+            <button id="btn-add-recipe">Add Recipe</button>
+            <p id="feedback" class="hidden"></p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+body {
+    font-family:Arial;
+    background:skyblue;
+}
+
+.error {
+    background:lightcoral;
+    color:darkRed;
+}
+
+.success {
+    background:lightgreen;
+    color:darkGreen;
+}
+
+.hidden {
+    display:none;
+}
