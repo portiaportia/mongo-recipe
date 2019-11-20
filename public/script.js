@@ -1,3 +1,32 @@
+async function showRecipes(){
+    
+    let response = await fetch(`api/recipes/`);
+    let recipes = await response.json();
+    let recipesDiv = document.getElementById("recipes");
+    recipesDiv.innerHTML = "";
+    console.log(recipes);
+    for(i in recipes){
+        console.log(recipes[i]);
+        recipesDiv.appendChild(getRecipeElem(recipes[i]));
+    }
+}
+
+function getRecipeElem(recipe){
+    let recipeDiv = document.createElement("div");
+    recipeDiv.classList.add("recipe");
+    let recipeContentDiv = document.createElement("div");
+    recipeContentDiv.classList.add("recipe-content");
+    recipeDiv.append(recipeContentDiv);
+    let recipeH3 = document.createElement("h3");
+    recipeH3.innerHTML = recipe.title;
+    recipeContentDiv.append(recipeH3);
+    recipeP = document.createElement('p');
+    recipeP.innerHTML = recipe.author + " rating " + recipe.rating + " stars";
+    recipeContentDiv.appendChild(recipeP);
+    return recipeDiv;
+}
+
+
 async function addRecipe(){
     const title = document.getElementById("txt-add-recipe-title").value;
     const author = document.getElementById("txt-add-recipe-author").value;
