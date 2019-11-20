@@ -75,6 +75,23 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/index.html');
 });
 
+async function getRecipes(res){
+    const recipes = await Recipe.find();
+    res.send(recipes);
+}
+
+app.get('/api/recipes',(req,res)=>{
+    const recipes = getRecipes(res);
+});
+
+
+
+
+
+
+
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log(`listening on port ${port}`);

@@ -64,4 +64,5 @@ async function addRecipe(){
 
 window.onload = function(){
     this.document.getElementById("btn-add-recipe").onclick = addRecipe;
+    this.showRecipes();
 }
