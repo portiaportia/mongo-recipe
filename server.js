@@ -77,6 +77,7 @@ app.get('/',(req,res)=>{
 
 async function getRecipes(res){
     const recipes = await Recipe.find();
+    console.log(recipes);
     res.send(recipes);
 }
 
@@ -84,13 +85,55 @@ app.get('/api/recipes',(req,res)=>{
     const recipes = getRecipes(res);
 });
 
+app.get('/api/recipes/:id',(req,res)=>{
+    let recipe = getRecipe(req.params.id,res)
+})
 
+async function getRecipe(id,res){
+    const recipe = await Recipe
+    .findOne({_id:id});
+    console.log(recipe);
+    res.send(recipe);
+}
 
+app.put('/api/recipes/:id',(req,res)=>{
+    //validate 
+    //if invalid return 400 - bad request
+    const result = validateRecipe(req.body);
 
+    if(result.error){
+        res.status(400).send(result.error.details[0].message);
+        return;
+    }
 
+    updateRecipe(res,req.params.id, req.body.title, req.body.author, req.body.rating, req.body.ingredients, req.body.directions );
+});
 
+async function updateRecipe(res, id, title, author, rating, ingredients, directions) {
+    //fist param: to find, second update
+    const result = await Recipe.updateOne({_id:id},{
+        $set:{
+            title:title,
+            author:author,
+            rating: Number(rating),
+            ingredients: ingredients,
+            directions:directions
+        }
+    })
+    
+    res.send(result);
+}
 
+app.delete('/api/recipes/:id',(req,res)=>{
+    removeCourse(res, req.params.id);
+});
 
+async function removeCourse(res, id) {
+    //can also use delete many
+    //const result = await Course.deleteOne({_id:id});
+    const recipe = await Recipe.findByIdAndRemove(id);
+    res.send(recipe);
+}
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
