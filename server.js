@@ -125,10 +125,10 @@ async function updateRecipe(res, id, title, author, rating, ingredients, directi
 }
 
 app.delete('/api/recipes/:id',(req,res)=>{
-    removeCourse(res, req.params.id);
+    removeRecipe(res, req.params.id);
 });
 
-async function removeCourse(res, id) {
+async function removeRecipe(res, id) {
     //can also use delete many
     //const result = await Course.deleteOne({_id:id});
     const recipe = await Recipe.findByIdAndRemove(id);
